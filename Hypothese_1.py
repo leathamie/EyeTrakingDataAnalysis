@@ -18,24 +18,24 @@ for file in os.listdir(path_img):
         imgs.append(file)
 
 # Creating Emo_Img_By_Users
-# for file in os.listdir(path_tsv):
-#     if file.endswith(".tsv"):
-#         print("user : ", file, " ==================")
-#         df_emo = pd.DataFrame(np.zeros(shape=(len(emotions), len(images))), index=emotions, columns=images)
-#         # print(df_emo)
-#         data = pd.read_csv(path_tsv+file, sep=',', header=0)
-#         for img in imgs:
-#             data_img = data[data['MediaName'].str.contains(img)]
-#             column = re.search('(.*\d\d)', img).group(1)
-#             row = re.search('\d\d(.+?).JPG', img).group(1)
-#             # print(row, ' _ ', column, ' _ ', len(set(data_img['FixationIndex'])))
-#             df_emo.at[row, column] += len(set(data_img['FixationIndex']))
-#             # print(img, " - ", , " - ", data_emo['FixationIndex'].count())
-#         print("==============================================")
-#         print(df_emo)
-#
-#         # Saving file
-#         df_emo.to_csv("./Emo_Img_By_Users/Emo_Img_"+file, sep='\t')
+for file in os.listdir(path_tsv):
+    if file.endswith(".tsv"):
+        print("user : ", file, " ==================")
+        df_emo = pd.DataFrame(np.zeros(shape=(len(emotions), len(images))), index=emotions, columns=images)
+        # print(df_emo)
+        data = pd.read_csv(path_tsv+file, sep=',', header=0)
+        for img in imgs:
+            data_img = data[data['MediaName'].str.contains(img)]
+            column = re.search('(.*\d\d)', img).group(1)
+            row = re.search('\d\d(.+?).JPG', img).group(1)
+            # print(row, ' _ ', column, ' _ ', len(set(data_img['FixationIndex'])))
+            df_emo.at[row, column] += len(set(data_img['FixationIndex']))
+            # print(img, " - ", , " - ", data_emo['FixationIndex'].count())
+        print("==============================================")
+        print(df_emo)
+
+        # Saving file
+        df_emo.to_csv("./Emo_Img_By_Users/Emo_Img_"+file, sep='\t')
 
 # Creating Emo_Img_All_Users
 # Create column names
